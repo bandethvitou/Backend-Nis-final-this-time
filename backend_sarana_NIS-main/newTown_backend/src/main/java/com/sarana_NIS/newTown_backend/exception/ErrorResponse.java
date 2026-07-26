@@ -1,0 +1,92 @@
+package com.sarana_NIS.newTown_backend.exception;
+
+import java.time.LocalDateTime;
+import java.util.Map;
+
+public class ErrorResponse {
+
+    private int status;
+    private String error;
+    private String message;
+    private String path;
+    private LocalDateTime timestamp;
+    private Map<String, String> validationErrors;
+    private String errorCode;
+    private String traceId;
+
+    // Constructors
+    public ErrorResponse() {}
+
+    public ErrorResponse(int status, String error, String message, String path,
+                         LocalDateTime timestamp, Map<String, String> validationErrors,
+                         String errorCode, String traceId) {
+        this.status = status;
+        this.error = error;
+        this.message = message;
+        this.path = path;
+        this.timestamp = timestamp;
+        this.validationErrors = validationErrors;
+        this.errorCode = errorCode;
+        this.traceId = traceId;
+    }
+
+    // Builder pattern
+    public static ErrorResponseBuilder builder() {
+        return new ErrorResponseBuilder();
+    }
+
+    // Getters and Setters
+    public int getStatus() { return status; }
+    public void setStatus(int status) { this.status = status; }
+
+    public String getError() { return error; }
+    public void setError(String error) { this.error = error; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+
+    public String getPath() { return path; }
+    public void setPath(String path) { this.path = path; }
+
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+
+    public Map<String, String> getValidationErrors() { return validationErrors; }
+    public void setValidationErrors(Map<String, String> validationErrors) {
+        this.validationErrors = validationErrors;
+    }
+
+    public String getErrorCode() { return errorCode; }
+    public void setErrorCode(String errorCode) { this.errorCode = errorCode; }
+
+    public String getTraceId() { return traceId; }
+    public void setTraceId(String traceId) { this.traceId = traceId; }
+
+    // Builder inner class
+    public static class ErrorResponseBuilder {
+        private int status;
+        private String error;
+        private String message;
+        private String path;
+        private LocalDateTime timestamp;
+        private Map<String, String> validationErrors;
+        private String errorCode;
+        private String traceId;
+
+        public ErrorResponseBuilder status(int status) { this.status = status; return this; }
+        public ErrorResponseBuilder error(String error) { this.error = error; return this; }
+        public ErrorResponseBuilder message(String message) { this.message = message; return this; }
+        public ErrorResponseBuilder path(String path) { this.path = path; return this; }
+        public ErrorResponseBuilder timestamp(LocalDateTime timestamp) { this.timestamp = timestamp; return this; }
+        public ErrorResponseBuilder validationErrors(Map<String, String> validationErrors) {
+            this.validationErrors = validationErrors; return this;
+        }
+        public ErrorResponseBuilder errorCode(String errorCode) { this.errorCode = errorCode; return this; }
+        public ErrorResponseBuilder traceId(String traceId) { this.traceId = traceId; return this; }
+
+        public ErrorResponse build() {
+            return new ErrorResponse(status, error, message, path, timestamp,
+                    validationErrors, errorCode, traceId);
+        }
+    }
+}
